@@ -1,16 +1,19 @@
-def ytwiege(dichte=2700): #alu
+def wiege(dichte=2700):
     sel = FreeCADGui.Selection.getSelection()
     if not sel:
-        print("Kein Objekt ausgewählt")
+        print("Kein Objekt ausgewählt.")
         return
     obj = sel[0]
-    vol_mm3 = obj.Shape.Volume  # mm³
-    vol_m3 = vol_mm3 / 1_000_000_000  # m³
-    masse_kg = vol_m3 * dichte  # kg
-    masse_g = masse_kg * 1000  # g
+    vol_mm3 = obj.Shape.Volume
+    vol_m3 = vol_mm3 / 1_000_000_000
+    masse_kg = vol_m3 * dichte
+    masse_g = masse_kg * 1000
+    masse_lbs = masse_g / 453.59237
+
     print(f"Volumen: {vol_mm3:.0f} mm³ ({vol_m3:.9f} m³)")
     print(f"Dichte: {dichte} kg/m³")
     print(f"Masse: {masse_g:.3f} g")
+    print(f"Masse: {masse_lbs:.3f} lbs")
 
 import __main__
-__main__.ytwiege = ytwiege
+__main__.wiege = wiege
